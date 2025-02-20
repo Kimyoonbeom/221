@@ -52,7 +52,7 @@
         margin-bottom: 15px;
     }
 
-    .you>a {
+    .you > a {
         font-family: 'Black Han Sans', sans-serif;
         font-size: 28px;
         color: black;
@@ -70,19 +70,6 @@
         display: flex;
         flex-direction: row;
     }
-
-    .hidden {
-        display: none;
-        /* 처음에 숨겨짐 */
-
-    }
-
-    .show {
-        display: block;
-        /* 'show' 클래스를 추가할 때 보이게 설정 */
-
-    }
-
 
     .myface {
         margin: 17px 10px 10px 20px;
@@ -102,10 +89,9 @@
         margin-left: 10px;
         margin-right: 10px;
         margin-bottom: 0px;
-
     }
 
-    .letme>p {
+    .letme > p {
         font-size: 20px;
         margin-left: 0;
         padding-left: 0;
@@ -116,10 +102,9 @@
         display: flex;
         align-items: center;
         margin-left: 150px;
-
     }
 
-    .velogbtn>p {
+    .velogbtn > p {
         margin-right: 20px;
     }
 
@@ -130,10 +115,9 @@
         height: 600px;
         width: 820px;
         overflow: hidden;
-
     }
 
-    .mainIntro>h1 {
+    .mainIntro > h1 {
         /* background-color: aqua; */
         background-image: url('images/sge_intro2.png');
         background-size: 100%;
@@ -145,7 +129,7 @@
         margin-bottom: 0;
     }
 
-    .mainIntro>h3 {
+    .mainIntro > h3 {
         /* background-color: aqua; */
         background-image: url('images/sge_intro2.png');
         background-size: 100%;
@@ -156,9 +140,7 @@
         /* margin-bottom: 80px; */
         padding: 8px 0px 0px 15px;
         margin-top: 0;
-        /* p와 h3 사이의 간격 없애기 */
         margin-bottom: 0;
-        /* p와 다른 요소 간의 간격 없애기 */
     }
 
     .mainIntro>p {
@@ -175,12 +157,8 @@
         position: relative;
         right: 0;
         margin-left: auto;
-        /* p 태그를 오른쪽으로 밀어냄 */
         margin-top: 0;
-        /* p와 h3 사이의 간격 없애기 */
         margin-bottom: 0;
-        /* p와 다른 요소 간의 간격 없애기 */
-
     }
 
     .sbtn {
@@ -196,12 +174,103 @@
         box-shadow: none;
         /* 그림자 제거 */
         background-color: #f0f0f0;
-        /* 배경 색상 (선택 사항) */
         border: 1px solid #f0f0f0;
-        /* 얇은 테두리 추가 (선택 사항) */
+    }
+
+    .edit-form {
+        margin-top: 20px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /* display: none; */
+
+
+        visibility: hidden;
+        opacity: 0;
+        position: relative;  /* 부모 요소와 상호작용하도록 변경 */
+        z-index: 10;
+    }
+
+    .edit-form input,
+    .edit-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .edit-form input:focus,
+    .edit-form textarea:focus {
+        border-color: #6c757d;
+        outline: none;
+    }
+
+    .edit-form button {
+        background-color: #e7e7e7;
+        color: rgb(0, 0, 0);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .edit-form button:hover {
+        background-color: #e9f1e9;
+    }
+
+    .edit-form button:active {
+        background-color: #edf3ed;
+    }
+
+    .edit-form.show {
+        /* position: static; */
+        opacity: 1;
+        visibility: visible;
+        transition: visibility 0s, opacity 0.5s ease;
+        /* display: block; */
+    }
+
+    #t11 {
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .show {
+        display: block;
     }
 </style>
 <script type="module">
+    // Firebase SDK 라이브러리 가져오기
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { collection, addDoc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+    // Firebase 구성 정보 설정
+    const firebaseConfig = {
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        apiKey: "AIzaSyBy3eE88hLZPs0nbZsyh-xDwU3P4o_V0RY",
+        authDomain: "sparta-8502a.firebaseapp.com",
+        projectId: "sparta-8502a",
+        storageBucket: "sparta-8502a.firebasestorage.app",
+        messagingSenderId: "951025107455",
+        appId: "1:951025107455:web:27123fc896a1e0df7367ca",
+        measurementId: "G-TZR3YGP3Y5"
+    };
+
+
+    // Firebase 인스턴스 초기화
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
     let t_idx = 0;
 
@@ -212,11 +281,42 @@
             $(elements[t_idx]).addClass('show');
             $(this).insertAfter($(elements[t_idx]));
             $(elements[t_idx]).get(0).scrollIntoView({
-                behavior: "smooth", 
-                block: "start"  
+                behavior: "smooth",
+                block: "start"
             });
             t_idx++;
             console.log(t_idx);
+            // 새로 보이는 #t11에 클릭 이벤트
+            if ($(elements[t_idx - 1]).attr('id') === 't11') {
+                console.log('rkdms')
+                initButton();
+            }
+        }
+    });
+
+    function initButton() {
+        $("#t11").on("click", function () {
+            $('.edit-form').toggleClass("show");
+        });
+    }
+
+    // 저장 버튼 클릭 시 Firebase에 데이터 추가
+    $("#saveBtn").click(async function () {
+        const title = $('#nameTitle').val();
+        const comment = $('#comment').val();
+
+        try {
+            const docRef = await addDoc(collection(db, "gaeunlove"), {
+                'title': title,
+                'comment': comment,
+                'timestamp': new Date()
+
+            });
+            console.log(title, comment)
+            alert("비밀메시지 전송 완료!");
+            $('.edit-form').toggle();
+        } catch (e) {
+            console.error("Error adding document: ", e);
         }
     });
 
@@ -228,7 +328,6 @@
         <div class="you">
             <a href="team_page.html">&lt;</a>
             <h1>스파르타</h1>
-
         </div>
         <div id="main">
             <div class="simpleIntro" id="t1">
@@ -253,7 +352,6 @@
 
             <div class="mainIntro">
                 <button class="sbtn" id="showbtn">⬆️</button>
-
                 <h1 id="t2" class="hidden">Who is 가은❓</h1>
                 <h3 id="t3" class="hidden">MBTI가 뭐야??</h3>
                 <p id="t4" class="hidden">INTP입니다!</p>
@@ -269,10 +367,15 @@
                 <p id="t10" class="hidden">7월까지 다같이 열심히 해봐요~
                     <br>잘부탁드립니다!!
                 </p>
+                <p id="t11" class="hidden" style="cursor: pointer;">저에게 비밀메시지를
+                    보내고 싶으면 여기를 누르세요!</p>
+                <div class="edit-form">
+                    <input type="text" id="nameTitle" class="edit-title" placeholder="제목을 입력하세요" />
+                    <textarea id="comment" class="edit-comment" placeholder="내용을 입력하세요!"></textarea>
+                    <button id="saveBtn">보내기</button>
+                </div>
             </div>
-
         </div>
-
     </div>
     <div class="topbtn" style="position: fixed; bottom: 20px; right: 20px;">
         <a href="#pageTop"><img src="images/topbtn.png" style="width:60px; height:60px; border-radius:20px"></a>
