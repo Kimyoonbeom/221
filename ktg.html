@@ -7,6 +7,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         
+ 
 
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Darumadrop+One&family=Gowun+Dodum&family=Noto+Sans+KR:wght@100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
        *{
@@ -30,7 +31,40 @@
    
    
     }
-     p { font-size:larger;
+
+
+
+
+  @keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.btnc{
+  animation: blink 0.7s infinite;
+}
+
+h1{ background-color:darkgray
+
+
+
+
+}
+ 
+
+
+</style>
+
+
+
+<style>
+
+
+     p{ font-size:larger;
         margin-left:400px;
 
 
@@ -47,20 +81,24 @@
 </head>
 <body>
    
-
+ <div></div>
  <h1><strong>&nbsp;Welcome to introduction page of Taegyun</strong></h1>
- <div><h4>(버튼을 클릭해주세요)</h4></div>
+   
+ <div class="btnc"><h4>(버튼을 클릭해주세요)</h4></div>
+
+</a>
+
     <div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
-        <li class="nav1 me-4"><a href="#" class=" active btn btn-dark"data-bs-toggle="collapse" data-bs-target="#aboutMe" aria-current="page">자기소개</a></li>
-        <li class="nav2 me-4"><a href="#" class=" active btn btn-dark" data-bs-toggle="collapse" data-bs-target="#motive"aria-current="page">지원동기</a></li>
-        <li class="nav3 me-4"><a href="#" class="active btn btn-dark" data-bs-toggle="collapse" data-bs-target="#tmi"aria-current="collapse" >TMI</a></li>
-      
+        <li class="btn1 me-4"><a href="#" class=" active btn btn-dark"data-bs-toggle="collapse" data-bs-target="#aboutMe" aria-current="page">자기소개</a></li>
+        <li class="btn2 me-4"><a href="#" class=" active btn btn-dark" data-bs-toggle="collapse" data-bs-target="#motive"aria-current="page">지원동기</a></li>
+        <li class="btn3 me-4"><a href="#" class="active btn btn-dark" data-bs-toggle="collapse" data-bs-target="#tmi"aria-current="collapse" >TMI</a></li>
+      </div>
 
       </ul>
     </header>
- 
+  
              <div class="collapse" id="aboutMe">
             <div class="card card-body">
              <strong>   안녕하세요, 저는 김태균입니다. 저는 코딩에 관심이 많고, 
@@ -100,7 +138,7 @@
                   
                 </strong> </div>
                     
-                   
+               
                     
                 </div>
             
@@ -109,6 +147,30 @@
         </div>
     </div>
       
+
+    
+
+<style>
+  .h1 {
+    font-size: 36px;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 1s ease-out forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
+
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
 
@@ -119,6 +181,10 @@
 
     </script>
     </script>
+
+  
+</style>
+
     
 </body>
 </html>
