@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김윤범의 자기소개</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 20px;
+            background-color: #EFF2F8;
+            display: flex;
+            flex-direction: column;
+            /* 세로 방향 정렬 */
+            align-items: center;
+            /* 중앙 정렬 */
+        }
+
+        .intro-box {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 250px 0 0 100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 1000px;
+            max-width: 100%;
+            transform: translate(-700px, -100px);
+            /* 이동 시키는 방법 */
+        }
+
+        .intro-box iframe {
+            width: 300px;
+            height: 400px;
+            /* 크기 조정 */
+            border: none;
+            /* 테두리 제거 */
+        }
+
+        .intro-text {
+            padding-left: 20px;
+            /* 텍스트와 이미지 간격 추가 */
+            flex: 1;
+            /* 텍스트가 남은 공간 차지 */
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        #guestbook {
+            margin: 40px 0 0 100px;
+            /* 방명록도 동일하게 왼쪽 아래로 이동 */
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 1000px;
+            /* 자기소개 박스와 동일한 너비 */
+            max-width: 100%;
+            transform: translate(-700px, -100px);
+            /* 이동 시키는 방법 */
+        }
+
+        #guestbook h2 {
+            margin-bottom: 20px;
+        }
+
+        #guestbook-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #guestbook-form label {
+            margin-top: 10px;
+        }
+
+        #guestbook-form input,
+        #guestbook-form textarea {
+            margin-top: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #guestbook-form button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #guestbook-form button:hover {
+            background-color: #0056b3;
+        }
+
+        #messages-container {
+            margin-top: 30px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #007BFF;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 자기소개 박스 -->
+    <div class="intro-box">
+        <iframe src="https://drive.google.com/file/d/1Xd4Ctzf-sEUXoUt8Wo-d5jjcc4Yi4C7K/preview"></iframe>
+
+        <div class="intro-text">
+            <section id="about">
+                <h2>About Me</h2>
+                <p>데이터사이언스를 전공으로 올해 2월에 졸업을 하고 </p>
+                <p>여러 경험을 쌓고 취업하는 멋진 모습을 그리며 참여하게 되었습니다!</p>
+                <br>
+                <p>00년생, 현재 서울에 거주하고 있습니다.</p>
+                
+
+            </section>
+
+            <section id="skills">
+                <h2>취미 및 장점</h2>
+                <ul>
+                    <li>웹툰 보기</li>
+                    <li>당구</li>
+                    <li>개방적인 태도</li>
+                    <li>친해지면 편하고 유쾌함</li>
+                </ul>
+            </section>
+
+            <section id="tmi">
+                <h2>TMI</h2>
+                <p>어떤 게임을 좋아하는가?</p>
+                <ul>
+                    <li>롤, 로스트아크 등 RPG와 스팀 게임을 좋아합니다.</li>
+                    <li>FPS류는 기피하는 편입니다. 못하기도 하고.. 3D멀미가 좀 있어서..</li>
+
+                </ul>
+                <br>
+                <p>술을 진짜! 못함.</p>
+                <ul>
+                    <li>저보다 못 마시는 사람을 본 적이 없습니다.</li>
+                    <li>특별한 날이 아니면 입도 대지 않습니다.</li>
+                </ul>
+                <br>
+                <p>버거킹 알바.</p>
+                <ul>
+                    <li>1년 동안 했었는데 덕분에 허리가 아직까지 아픕니다.</li>
+                    <li>후회 중 🙁</li>
+                </ul>
+                <br>
+                <p>왼쪽 제 사진이 보이십니까?</p>
+                <ul>
+                    <li>이번 2월달에 말레이시아 여행을 가족과 다녀왔답니다.</li>
+                    <li>자랑하고싶었습니다.</li>
+                </ul>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>Email: kimybeom@naver.com</p>
+                <p>Github: https://github.com/Kimyoonbeom/</p>
+                <p>Velong: https://velog.io/@kimybeom/posts</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- 방명록 섹션 -->
+    <section id="guestbook">
+        <h2>방명록</h2>
+        <form id="guestbook-form">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+
+            <label for="message">메시지:</label>
+            <textarea id="message" name="message" placeholder="메시지를 입력하세요" required></textarea>
+
+            <button type="submit">등록</button>
+
+            <!-- 댓글 추가하기 -->
+            <div id="messages-container"></div>
+        </form>
+
+        <!-- 방명록 섹션 아래 댓글 박스 만들기-->
+        <div id="messages-container">
+            <div class="message">
+                <p><strong>이름:</strong> 김윤범</p>
+                <p><strong>메시지:</strong> 반갑습니다!! 어쩌고 저쩌고</p>
+
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        document.getElementById("guestbook-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (name && message) {
+                // 메시징 생성 //
+                const messageBox = document.createElement("div");
+                messageBox.classList.add("message");
+
+                // 이름과 메세지 
+                messageBox.innerHTML = `
+                    <p><strong>이름:</strong> ${name}</p>
+                    <p><strong>메시지:</strong> ${message}</p>
+                `;
+                document.getElementById("messages-container").appendChild(messageBox);
+
+            } else {
+                alert("이름과 메시지를 모두 입력해주세요.");
+            }
+        });
+    </script>
+</body>
+
+

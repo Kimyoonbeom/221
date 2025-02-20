@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta name="viewport" content="device-width, initial-scale=1.0">
     <title>둘둘1나</title>
     <!-- 부트스트랩 import -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -11,8 +11,13 @@
 
     <!-- jQuery import -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gaegu&family=Gamja+Flower&family=Gowun+Dodum&display=swap');
 
         * {
             font-family: 'Gowun Dodum', sans-serif;
@@ -40,7 +45,7 @@
             /* background-color: #ca8bde; */
         }
 
-        .container{
+        .container {
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -60,7 +65,7 @@
         .header {
             background-size: cover;
             /* background-color: green; */
-            background-image: url('/Users/songgaeun/Desktop/sparta/team_mini_pro/images/mainimg.png');
+            background-image: url('images/mainimg.png');
             background-position: right;
             height: 700px;
             display: flex;
@@ -108,7 +113,7 @@
 
         .card-title {
             margin-top: 10px;
-            font-size: 20px;
+            font-size: 30px;
             /* max-height: 400px; */
             font-weight: bold;
         }
@@ -116,11 +121,13 @@
         .card-body {
             border: rgb(127, 182, 105) 5px solid;
             border-radius: 20px;
-            
+            height: 230px;
+
 
         }
-        
+
         .card-text {
+            font-size: 20px;
             color: black;
         }
 
@@ -130,10 +137,177 @@
             /* text-align: center; */
         }
 
+        .post {
+            width: 1460px;
+            margin: 20px 0px 1px 0px;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px transparent;
+            background-color: rgb(242, 238, 244);
 
+            border-radius: 10px;
+        }
+
+        .form-floating input,
+        .form-floating textarea {
+            color: black;
+            background-color: white;
+        }
+
+
+        .button2 {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+
+
+        }
+
+        .button2>button {
+            margin-right: 10px;
+        }
+
+        .guestcomment {
+            width: 1460px;
+            margin: 10px 0px 80px 20px;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px transparent;
+
+        }
+
+        .gcard {
+            border-radius: 30px;
+            /* background-color: rgb(144, 19, 19); */
+            border: none;
+            color: black;
+            margin: 15px 40px 15px 40px;
+
+        }
+
+        .gcard-title {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .gcard-body {
+
+            border-top: transparent;
+            border-right: transparent;
+            border-bottom: solid rgb(104, 102, 102);
+            border-left: transparent;
+            max-width: 100%;
+
+
+        }
+
+        .gcard-text {
+            color: black;
+        }
+
+        .gbutton {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+
+
+        }
+
+        .gbutton>button {
+            margin-right: 10px;
+            margin-top: 0;
+            margin-bottom: 5px;
+
+            border-radius: 10px;
+            /* 둥근 모서리 추가 */
+            box-shadow: none;
+            /* 그림자 제거 */
+            background-color: #f0f0f0;
+            /* 배경 색상 (선택 사항) */
+            border: 1px solid #f0f0f0;
+            /* 얇은 테두리 추가 (선택 사항) */
+
+        }
+
+        .gbutton>button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .guestbook {
+            width: 1460px;
+            /* background-color: rgb(57, 121, 121); */
+            margin: 20px 0px 1px 20px;
+        }
 
     </style>
-    <script>
+
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            apiKey: "AIzaSyBy3eE88hLZPs0nbZsyh-xDwU3P4o_V0RY",
+            authDomain: "sparta-8502a.firebaseapp.com",
+            projectId: "sparta-8502a",
+            storageBucket: "sparta-8502a.firebasestorage.app",
+            messagingSenderId: "951025107455",
+            appId: "1:951025107455:web:27123fc896a1e0df7367ca",
+            measurementId: "G-TZR3YGP3Y5"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 데이터 추가
+        $("#addBtn").click(async function () {
+
+            let title = $('#nameTitle').val();
+            let comment = $('#comment').val();
+
+            try {
+                const docRef = await addDoc(collection(db, "guestbookMain"), {
+
+                    'title': title,
+                    'comment': comment
+
+                });
+                console.log(title, comment)
+                alert("방명록이 추가 되었습니다!");
+                window.location.reload();
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        });
+
+
+        // 데이터 읽기 및 카드 생성
+        $(".guestcomment").empty();
+        const querySnapshot = await getDocs(collection(db, "guestbookMain"));
+
+        querySnapshot.forEach((doc) => {
+
+            let title = doc.data().title;
+            let comment = doc.data().comment;
+
+            let tempHtml = `  
+            <div class="gcard-body">
+                <h4 class="gcard-title">${title}</h4>
+                <p class="gcard-text">${comment}</p>
+            </div>
+            `
+
+            $(".guestcomment").append(tempHtml);
+        });
+
+ 
 
     </script>
 </head>
@@ -142,7 +316,6 @@
     <header>
         <div class="logo">
             <img src="images/221logo.png">
-            <!-- <a href="index.php"><img src="221logo.png"></a> -->
         </div>
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -155,8 +328,7 @@
                     <li><a href="#pageTop" class="nav-link px-2 ">홈</a></li>
                     <li><a href="#pageTeam" class="nav-link px-2 ">팀소개</a></li>
                     <li><a href="#pageTeammate" class="nav-link px-2 ">팀원소개</a></li>
-                    <!-- <li><a href="#" class="nav-link px-2 ">방명록</a></li> -->
-
+                    <li><a href="#pageGuestbook" class="nav-link px-2 ">방명록</a></li>
                 </ul>
             </div>
         </div>
@@ -171,13 +343,16 @@
                     <p class="col-md-8 fs-4"> 안녕하세요! 저희는 팀원들이 모이지 않은 팀원들의 모임 <span
                             style="background-color: rgb(255, 167, 58); font-size: 25px;"><b>‘둘둘하나’</b></span>입니다.
                         <br>21조, 26조, 27조는 두 명이하였지만 그들이 모여 5명의 새로운 팀이 되었답니다.
-                        <br><span style="background-color: rgb(255, 167, 58); font-size: 23px;"><b>개발자가 되기 위한 열정 !</b></span>
-                        <br><span style="background-color: rgb(255, 167, 58); font-size: 23px;"><b>팀으로 함께하고 싶은 마음 ! </b></span>
-                        <br><span style="background-color: rgb(255, 167, 58); font-size: 23px;"><b>미니프로젝트를 꼭 해보자는 의지 !</b></span>
+                        <br><span style="background-color: rgb(255, 167, 58); font-size: 23px;"><b>개발자가 되기 위한 열정
+                                !</b></span>
+                        <br><span style="background-color: rgb(255, 167, 58); font-size: 23px;"><b>팀으로 함께하고 싶은 마음 !
+                            </b></span>
+                        <br><span style="background-color: rgb(255, 167, 58); font-size: 23px;"><b>미니프로젝트를 꼭 해보자는 의지
+                                !</b></span>
                         <br>로 똘똘 뭉쳐진 팀입니다.
                         <br>진도도, 수준도, 성격도 모두 다르지만 한 배를 타고 함께 항해를 시작합니다
                         <br>아자아자 화이팅 😃
-                        
+
                     </p>
                 </div>
             </div>
@@ -185,54 +360,43 @@
         </div>
     </div>
 
-    <div class="mycards" id="pageTeammate" >
+    <div class="mycards" id="pageTeammate">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card h-100">
-                    <img src="images/sge.JPG"
-                        class="card-img-top" alt="...">
+                    <a href="sge.html"><img src="images/sge.JPG" class="card-img-top" alt="..."></a>
                     <div class="card-body">
                         <h4 class="card-title">송가은</h4>
+                        <p class="card-tmi">자기소개</p>
                         <p class="card-text">26살이고 컴퓨터공학과 전공했습니다!</p>
+                        <p class="card-tmi">tmi</p>
                         <p class="card-tmi">따끈따근 맥날 퇴사자! 맛도리 조합 물어보십쇼</p>
-                        <!-- <button class="card-button">수정하기</button> -->
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="https://i.postimg.cc/65Q5Hy5K/image.jpg"
-                        class="card-img-top" alt="...">
+                    <a href="ktg.html"><img src="https://i.postimg.cc/65Q5Hy5K/image.jpg" class="card-img-top"
+                            alt="..."></a>
                     <div class="card-body">
                         <h4 class="card-title">김태균</h4>
+                        <p class="card-tmi">자기소개</p>
                         <p class="card-text">28살이구요 비전공자입니다 </p>
+                        <p class="card-tmi">tmi</p>
                         <p class="card-tmi">INTJ,왼손잡이,빵돌이</p>
-                        <!-- <button class="card-button">수정하기</button> -->
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="images/kyb.jpg"
-                        class="card-img-top" alt="...">
+                    <a href="kyb.html"><img src="images/kyb.jpg" class="card-img-top" alt="..."></a>
                     <div class="card-body">
                         <h4 class="card-title">김윤범</h4>
+                        <p class="card-tmi">자기소개</p>
                         <p class="card-text">26살 데이터사이언스학과를 전공했습니다.</p>
+                        <p class="card-tmi">tmi</p>
                         <p class="card-tmi">평소에 사진을 잘안찍어서 </p>
-                        <p class="card-tmi">저 혼자있는사진 1년전꺼에서 찾았습니다.😭</p>
-                        <!-- <button class="card-button">수정하기</button> -->
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="images/kty.jpg"
-                        class="card-img-top" alt="kty사진">
-                    <div class="card-body">
-                        <h4 class="card-title">강태영</h4>
-                        <p class="card-text">21세기의 시작 01년생입니다~! <br> 조용하지만 노는것도 좋아합니다^-^</p>
-                        <p class="card-tmi">서울에서 살게된지 1년차입니다-_-</p>
-                        <!-- <button class="card-button">수정하기</button> -->
+                        <br> 저 혼자있는사진 1년전꺼에서 찾았습니다.😭
                     </div>
                 </div>
             </div>
@@ -248,15 +412,57 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="a.html"><img src="" class="card-img-top" alt="..."></a>
+                    <div class="card-body">
+                        <h4 class="card-title">이름</h4>
+                        <p class="card-tmi">자기소개</p>
+                        <p class="card-text">자기소개 - 여기 적으세요</p>
+                        <p class="card-tmi">tmi</p>
+                        <p class="card-tmi">TMI - 여기적으세요</p>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
     </div>
 
-    <div class="topbtn" style="position: fixed; bottom: 20px; right: 20px;">
-        <a href="#pageTop"><img src = "images/topbtn.png" style="width:60px; height:60px; border-radius:20px"></a>
+    <div class="guestbook" id="pageGuestbook">
+        <div>
+            <h1 style="font-family: 'Black Han Sans', sans-serif; ">자유롭게 방명록을 남겨주세요!</h1>
+            <!-- 부트스트랩 인풋 박스 적용-->
+            <div class="post" id="input-card">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nameTitle" placeholder="등록자 명">
+                    <label for="nameTitle">별명 입력해주세요</label>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
+                    <label for="comment">자유롭게 방명록을 남겨주세요</label>
+                </div>
+
+                <div class="button2">
+                    <button type="button" class="btn btn-light" id="addBtn"> 빙명록 등록 </button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="guestcomment">
+        <div class="gcard">
+            <div class="gcard-body">
+                <h4 class="gcard-title">하와이안 피자</h4>
+                <p class="gcard-text">이건 꼭 먹어봐야 해요</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="topbtn" style="position: fixed; bottom: 20px; right: 20px;">
+        <a href="#pageTop"><img src="images/topbtn.png" style="width:60px; height:60px; border-radius:20px"></a>
+    </div>
 
 </body>
 
