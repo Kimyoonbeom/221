@@ -129,6 +129,7 @@
         .card-text {
             font-size: 20px;
             color: black;
+        
         }
 
         .jumbotron-message {
@@ -244,8 +245,8 @@
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 
@@ -276,7 +277,8 @@
                 const docRef = await addDoc(collection(db, "guestbookMain"), {
 
                     'title': title,
-                    'comment': comment
+                    'comment': comment,
+                    'timestamp': new Date()  
 
                 });
                 console.log(title, comment)
@@ -290,7 +292,8 @@
 
         // 데이터 읽기 및 카드 생성
         $(".guestcomment").empty();
-        const querySnapshot = await getDocs(collection(db, "guestbookMain"));
+        const q = query(collection(db, "guestbookMain"), orderBy("timestamp", "desc")); // 오름차순 정렬
+        const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach((doc) => {
 
@@ -393,10 +396,10 @@
                     <div class="card-body">
                         <h4 class="card-title">김윤범</h4>
                         <p class="card-tmi">자기소개</p>
-                        <p class="card-text">26살 데이터사이언스학과를 전공했습니다.</p>
+                        <p class="card-text">26살 데이터사이언스학과 전공했습니다</p>
                         <p class="card-tmi">tmi</p>
-                        <p class="card-tmi">평소에 사진을 잘안찍어서 </p>
-                        <br> 저 혼자있는사진 1년전꺼에서 찾았습니다.😭
+                        <p class="card-tmi">평소에 사진을 잘안찍어서 저 혼자있는사진 1년전꺼에서 찾았습니다😭</p>
+                        
                     </div>
                 </div>
             </div>
@@ -453,10 +456,7 @@
 
     <div class="guestcomment">
         <div class="gcard">
-            <div class="gcard-body">
-                <h4 class="gcard-title">하와이안 피자</h4>
-                <p class="gcard-text">이건 꼭 먹어봐야 해요</p>
-            </div>
+
         </div>
     </div>
 
