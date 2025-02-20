@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개 페이지</title>
+    <style>
+        
+         @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
+        *{
+            font-family: "Gamja Flower", serif;
+            
+        }
+       .header{
+            position: sticky;
+            background-color: silver;
+            width:max;
+            height: 100px;
+            margin: 0;
+            padding: 20px;
+            text-align: center; 
+            
+        }
+        .header > img {
+            width: 50px; 
+            height: auto;
+        }
+        @keyframes movetext {
+            0% { left: 0; color: blue;}
+            50% { left: 50%; color: purple; }
+            100% { left: 00%; color: red; opacity: 0;}
+        }
+        .moving-text
+        {
+            position: absolute;
+            top: 20%;
+            left: 400px;
+            font-size: 24px;
+            font-weight:normal;
+            white-space: nowrap;
+            animation: movetext 5s linear 1 forwards,
+                    colorchange 2s linear infinite;
+        }
+        .body{
+            height: 2000px
+        }
+    </style>
+    <script>
+       
+    </script>
+</head>
+<body>
+    <div class="header"> <img src="https://drive.google.com/uc?export=view&id=1oSkPnBzLqrI5w92ZM7S7cJnMVQP-o3pg" 
+                                alt="221로고">
+        </header>
+    <div class="moving-text"><h1>안녕하세요 Hello 你好 नमस्ते Buongiorno Hola 今日は</h1></div>
+    
+    <div class="show"><p><h2>제 소개를 하겠습니다. </h2></p></div>
+    
+</body>
+</html>
