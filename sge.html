@@ -33,7 +33,7 @@
 
     .header {
         background-color: rgb(171, 219, 253);
-        height: 970px;
+        height: 1050px;
         width: 880px;
         display: flex;
         flex-direction: column;
@@ -46,17 +46,19 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        /* relative를 해줘야 you가 header상단에 붙음 */
         position: relative;
         width: 880px;
-        margin-top: 0%;
+        margin-top: 0;
         margin-bottom: 15px;
     }
 
-    .you > a {
+    .you>a {
         font-family: 'Black Han Sans', sans-serif;
         font-size: 28px;
         color: black;
         text-decoration: none;
+        /* a를 왼쪽으로 붙이기 absolute 부모 기준 이동 */
         position: absolute;
         left: 0;
         padding-left: 15px;
@@ -64,6 +66,7 @@
 
     .simpleIntro {
         background-image: url('images/sge_intro.png');
+        /* 요소와 동일 크기로 배경 이미지 보여줌 100% */
         background-size: 100%;
         height: 280px;
         width: 820px;
@@ -80,6 +83,7 @@
     .myface>img {
         max-height: 100%;
         max-width: 100%;
+        border-radius: 5px
     }
 
     .letme {
@@ -91,11 +95,11 @@
         margin-bottom: 0px;
     }
 
-    .letme > p {
+    .letme>p {
         font-size: 20px;
         margin-left: 0;
         padding-left: 0;
-        display: block;
+        /* display: block; */
     }
 
     .velogbtn {
@@ -104,23 +108,25 @@
         margin-left: 150px;
     }
 
-    .velogbtn > p {
+    .velogbtn>p {
         margin-right: 20px;
+        background-color: rgb(253, 241, 171);
+        font-size: 23px;
     }
-
 
     .mainIntro {
         margin-top: 0;
         /* background-color: green; */
-        height: 600px;
+        height: 650px;
         width: 820px;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
-    .mainIntro > h1 {
+    .mainIntro>h1 {
         /* background-color: aqua; */
         background-image: url('images/sge_intro2.png');
         background-size: 100%;
+        /* 반복 안함 */
         background-repeat: no-repeat;
         height: 60px;
         width: 240px;
@@ -129,10 +135,11 @@
         margin-bottom: 0;
     }
 
-    .mainIntro > h3 {
+    .mainIntro>h3 {
         /* background-color: aqua; */
         background-image: url('images/sge_intro2.png');
         background-size: 100%;
+        /* 배경 이미지의 반복설정 */
         background-repeat: no-repeat;
         font-size: 22px;
         height: px;
@@ -179,17 +186,18 @@
 
     .edit-form {
         margin-top: 20px;
-        background-color: #f9f9f9;
+        background-color: #dbeff9;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        /* display: none; */
+        display: none;
 
 
-        visibility: hidden;
+        /* visibility: hidden;
         opacity: 0;
-        position: relative;  /* 부모 요소와 상호작용하도록 변경 */
-        z-index: 10;
+        position: relative;   */
+        /* 부모 요소와 상호작용하도록 변경 */
+        /* z-index: 10; */
     }
 
     .edit-form input,
@@ -228,10 +236,10 @@
 
     .edit-form.show {
         /* position: static; */
-        opacity: 1;
-        visibility: visible;
-        transition: visibility 0s, opacity 0.5s ease;
-        /* display: block; */
+        /* opacity: 1;
+        visibility: visible; */
+        /* transition: visibility 0s, opacity 0.5s ease; */
+        display: block;
     }
 
     #t11 {
@@ -279,6 +287,7 @@
 
         if (t_idx < elements.length) {
             $(elements[t_idx]).addClass('show');
+            // 현재 보여준 요소 뒤로 버튼 이동
             $(this).insertAfter($(elements[t_idx]));
             $(elements[t_idx]).get(0).scrollIntoView({
                 behavior: "smooth",
@@ -287,6 +296,7 @@
             t_idx++;
             console.log(t_idx);
             // 새로 보이는 #t11에 클릭 이벤트
+            //.attr('id')> id속성값 가져옴
             if ($(elements[t_idx - 1]).attr('id') === 't11') {
                 console.log('rkdms')
                 initButton();
@@ -296,7 +306,11 @@
 
     function initButton() {
         $("#t11").on("click", function () {
-            $('.edit-form').toggleClass("show");
+            $('.edit-form').addClass("show");
+            $('.edit-form').get(0).scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
         });
     }
 
@@ -332,7 +346,7 @@
         <div id="main">
             <div class="simpleIntro" id="t1">
                 <div class="myface">
-                    <img style="border-radius: 5px" src="images/sge.JPG">
+                    <img src="images/sge.JPG">
                 </div>
                 <div class="letme">
                     <h1><b>👽 송가은 👽</b></h1>
@@ -342,7 +356,7 @@
                         <br>신세대에 뒤쳐지지 않기위해 항상 노력중이랍니다🤟
                     </p>
                     <div class="velogbtn">
-                        <p><span style="background-color: rgb(253, 241, 171); font-size: 23px;"><b>잠깐❗여기 누르고 가YO
+                        <p><span><b>잠깐❗여기 누르고 가YO
                                     👉</b></span></p>
                         <a href="https://velog.io/@sge1128/posts"><img src="images/topbtn.png"
                                 style="width:50px; height:50px; border-radius:20px; "></a>

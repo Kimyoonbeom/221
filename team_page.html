@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="device-width, initial-scale=1.0">
     <title>둘둘1나</title>
+
     <!-- 부트스트랩 import -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -13,12 +14,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <style>
+        /* 폰트 적용 */
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gaegu&family=Gamja+Flower&family=Gowun+Dodum&display=swap');
 
         * {
             font-family: 'Gowun Dodum', sans-serif;
         }
 
+        /* Header구역 */
         .logo {
             /* background-color: blue; */
             height: 150px;
@@ -31,7 +34,7 @@
         }
 
         .logo>img {
-            /* logo의 높이인 100px을 초과하지 않고 이미지의 최대 높이 설정 */
+            /* logo의 높이인 150px을 초과하지 않고 이미지의 최대 높이 설정 */
             max-height: 70%;
             /* 가로비율 유지 */
             max-width: 100%;
@@ -39,9 +42,14 @@
         }
 
         .container {
+            /* 안에 내용물 직렬 정렬 */
+            /* 플렉스 박스 활성화 */
             display: flex;
+            /* 가로 세로 정렬  */
             flex-direction: row;
+            /* 주축(가로축) 정렬 */
             justify-content: center;
+            /* 교차측 정렬 */
             align-items: center;
         }
 
@@ -54,11 +62,12 @@
 
         }
 
-
+        /* 팀소개부분 */
         .header {
             background-size: cover;
             /* background-color: green; */
             background-image: url('images/mainimg.png');
+            /* 배경 이미지 위치 설정 */
             background-position: right;
             height: 700px;
             display: flex;
@@ -76,6 +85,7 @@
 
         }
 
+        /* 팀원소개카드 부분 */
         .mycards {
             /* background-color: black; */
             width: 1500px;
@@ -93,11 +103,12 @@
             background-color: white;
             border: none;
             color: black;
-            margin: 15px 40px 15px 40px;
+            margin: 15px 40px;
             /* max-width: 100%;  */
         }
 
         .card-img-top {
+            /* 오브젝트 사이즈를 컨테이너 크기에 맞춰 조절 - cover : 비율 유지+비율 안맞으면 이미지 가운데로 보이게하고 자름 */
             object-fit: cover;
             height: 450px;
             /* max-width: 100%; */
@@ -128,10 +139,12 @@
             /* text-align: center; */
         }
 
+        /* 방명록 작성폼 부분 */
         .post {
             width: 1460px;
             margin: 20px 0px 1px 0px;
             padding: 20px;
+            /* 그림자 설정 */
             box-shadow: 0px 0px 3px 0px transparent;
             background-color: rgb(242, 238, 244);
             border-radius: 10px;
@@ -143,7 +156,6 @@
             background-color: white;
         }
 
-
         .button2 {
             display: flex;
             justify-content: flex-end;
@@ -154,11 +166,12 @@
             margin-right: 10px;
         }
 
+        /* 댓글 보여지는 부분 */
         .guestcomment {
             width: 1460px;
             margin: 10px 0px 80px 20px;
             padding: 20px;
-            box-shadow: 0px 0px 3px 0px transparent;
+            /* box-shadow: 0px 0px 3px 0px transparent; */
         }
 
         .gcard {
@@ -178,7 +191,7 @@
         }
 
         .gcard-body {
-
+            /* 하단실선보이게하위해 상좌우는 투명하게 해줌 */
             border-top: transparent;
             border-right: transparent;
             border-bottom: solid rgb(104, 102, 102);
@@ -192,12 +205,11 @@
             color: black;
         }
 
-        .gbutton {
+        /* 수정 삭제 버튼에 대한 내용-> 아직 구현 못함 */
+        /* .gbutton {
             display: flex;
             justify-content: flex-end;
             margin-top: 15px;
-
-
         }
 
         .gbutton>button {
@@ -206,19 +218,14 @@
             margin-bottom: 5px;
 
             border-radius: 10px;
-            /* 둥근 모서리 추가 */
             box-shadow: none;
-            /* 그림자 제거 */
             background-color: #f0f0f0;
-            /* 배경 색상 (선택 사항) */
             border: 1px solid #f0f0f0;
-            /* 얇은 테두리 추가 (선택 사항) */
-
         }
 
         .gbutton>button:hover {
             background-color: #e0e0e0;
-        }
+        } */
 
         .guestbook {
             width: 1460px;
@@ -260,11 +267,12 @@
             let comment = $('#comment').val();
 
             try {
+                // add
                 const docRef = await addDoc(collection(db, "guestbookMain"), {
 
                     'title': title,
                     'comment': comment,
-                    // 댓글 단 순서대로 내림차순으로 내용을 가지고 오고 싶어서 시간도 같이 보내주도록 함 
+                    // 댓글 단 순서대로 내림차순으로 내용을 가지고 오고 싶어서 시간정보 포함
                     'timestamp': new Date()  
 
                 });
@@ -279,7 +287,7 @@
 
         // 데이터 읽기 및 카드 생성
         $(".guestcomment").empty();
-        const q = query(collection(db, "guestbookMain"), orderBy("timestamp", "desc")); // 오름차순 정렬
+        const q = query(collection(db, "guestbookMain"), orderBy("timestamp", "desc")); // 내림차순 정렬
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach((doc) => {
@@ -296,9 +304,8 @@
             $(".guestcomment").append(tempHtml);
         });
 
- 
-
     </script>
+    
 </head>
 
 <body id="pageTop">
